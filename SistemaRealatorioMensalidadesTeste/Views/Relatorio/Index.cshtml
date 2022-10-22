@@ -1,0 +1,43 @@
+﻿@model List<MensalidadeModel>
+@{
+    ViewData["Title"] = "Relatorio";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Relatorio de mensalidades</h1>
+
+    <table id="table-reports" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Mes</th>
+                <th scope="col">Ano</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Situacao</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var mensalidade in Model)
+                {
+                    <tr>
+                        <td>@mensalidade.Id</td>
+                        <td>@mensalidade.SolicitanteNome</td>
+                        <td>@mensalidade.Mes</td>
+                        <td>@mensalidade.Ano</td>
+                        <td>@mensalidade.Valor</td>
+                        <td>@mensalidade.Situacao</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valign="top" colspan="2">Nenhuma dado encontrada</td></tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,57 @@
+﻿@model MensalidadeModel
+@{
+    ViewData["Title"] = "Gerar Mensalidade";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Gerar Mensalidade</h1>
+</div>
+
+
+
+<form asp-controller="Mensalidade" asp-action="Criar" method="post">
+
+    <div class="col-3">
+        <label for="nome" class="form-label">Selecione o Solicitante:</label>
+        <select class="form-control" asp-for="SolicitanteId" aria-label=".form-select-lg example">
+            <option value="">Selecione</option>
+            @foreach (var item in Model.Solicitantes)
+            {               
+                <option value="@item.Codigo">@item.Nome</option>               
+            }
+        </select>
+
+    </div>
+    <div class="col-3">
+        <label for="nome" class="form-label">Digite o Mes:</label>
+        <input type="number" asp-for="Mes" class="form-control" placeholder="Digite o mes ">
+        @Html.ValidationMessageFor(x => x.Mes)
+    </div>
+
+    <div class="col-3">
+        <label for="nome" class="form-label">Digite o Ano:</label>
+        <input type="number" asp-for="Ano" class="form-control" placeholder="Digite o Ano">
+        @Html.ValidationMessageFor(x => x.Ano)
+    </div>
+
+    <div class="col-3">
+        <label for="nome" class="form-label">Digite o Valor:</label>
+        <input type="text" asp-for="Valor" class="form-control" placeholder="Digite o valor">
+        @Html.ValidationMessageFor(x => x.Valor)
+    </div>
+
+    <div class="col-3">
+        <label for="nome" class="form-label">Situação:</label>
+        <select class="form-control" asp-for="Situacao" aria-label=".form-select-lg example">
+            <option value="">Selecione</option>
+            <option value="Pago">Pago</option>
+            <option value="Em aberto">Em aberto</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Situacao)
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Mensalidade" role="button">Voltar</a>
+
+</form>

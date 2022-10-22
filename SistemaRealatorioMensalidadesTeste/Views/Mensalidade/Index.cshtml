@@ -1,0 +1,60 @@
+﻿@model List<MensalidadeAgrupadoModel>
+@{
+    ViewData["Title"] = "Gerar Mensalidade";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" asp-controller="Mensalidade" asp-action="Criar" role="button">Gerar Mensalidade</a>
+    </div>
+
+ <br />
+
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<br />
+
+<h1 class="display-4">Listagem de solicitantes</h1>
+
+<table id="table" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>            
+            <th scope="col">Mensalidades em Aberto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var mensalidade in Model)
+            {
+                <tr>
+                    <td>@mensalidade.Nome</td>
+                    <td>@mensalidade.MensalidadeAberta</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="odd"><td valign="top" colspan="2">Nenhuma mensalidade encontrada</td></tr>
+        }
+    </tbody>
+</table>
+
+</div>
